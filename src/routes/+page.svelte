@@ -1,2 +1,9 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import Map from '#lib/components/Map.svelte';
+	import { places } from '#lib/places';
+</script>
+
+<main class="mx-auto max-w-6xl p-6">
+	<h1 class="mb-4 text-3xl font-bold">North East Places</h1>
+	<Map {places} />
+</main>

@@ -19,6 +19,9 @@ export default defineConfig({
 			adapter: adapter()
 		})
 	],
+	optimizeDeps: {
+		exclude: ['maplibre-gl']
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
