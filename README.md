@@ -4,7 +4,7 @@ An accessible map of towns in North East England, built with SvelteKit and MapLi
 
 Choose a place from the list or click a marker on the map, and the two stay in sync. A search box filters the list by town name or county.
 
-**Live site:** _coming soon_
+**Live site:** https://north-east-places.vercel.app
 
 ## Features
 
@@ -38,6 +38,8 @@ A map on its own isn't usable with a keyboard or a screen reader, so every place
 The selected place is held in one piece of state on the page (`selectedId`) and passed down to both the map and the list, along with an `onSelect` callback. Neither component knows about the other.
 
 The search logic lives in a plain TypeScript function, `filterPlaces` in `src/lib/filter.ts`, kept separate from the components so it can be unit tested on its own. The page uses `$derived` to recalculate the filtered list whenever the search changes.
+
+MapLibre 6 loads its tile-processing Web Worker from a file next to its own script. After a production build that path no longer exists, so tiles failed to render even though markers worked. I import the worker with Vite's `?url` suffix, so it's copied into the build, and pass the address to `maplibregl.setWorkerUrl()`.
 
 ## Testing
 
