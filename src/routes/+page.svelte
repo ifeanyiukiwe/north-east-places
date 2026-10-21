@@ -26,6 +26,9 @@
 					autocomplete="off"
 					class="w-full rounded border border-gray-500 p-2"
 				/>
+				<p aria-live="polite" class="mt-2 text-sm text-gray-700">
+					{filteredPlaces.length}{' '}{filteredPlaces.length === 1 ? 'place' : 'places'} found
+				</p>
 			</div>
 
 			<PlaceList places={filteredPlaces} {selectedId} {onSelect} />

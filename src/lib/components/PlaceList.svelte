@@ -14,23 +14,27 @@
 
 <section aria-labelledby="places-heading">
 	<h2 id="places-heading" class="mb-3 text-xl font-bold">Places</h2>
-	<ul class="flex flex-col gap-2">
-		{#each places as place (place.id)}
-			{@const isSelected = selectedId === place.id}
+	{#if places.length === 0}
+		<p class="text-gray-700">No place matches your search.</p>
+	{:else}
+		<ul class="flex flex-col gap-2">
+			{#each places as place (place.id)}
+				{@const isSelected = selectedId === place.id}
 
-			<li>
-				<button
-					type="button"
-					onclick={() => onSelect(place.id)}
-					aria-pressed={isSelected}
-					class={`w-full rounded border border-gray-300 p-3 text-left  ${isSelected ? 'bg-[#1f4e5f] text-white' : 'hover:bg-gray-100'}`}
-				>
-					<span class="block font-semibold">{place.name}</span>
-					<span class={`block text-sm ${isSelected ? 'text-white' : 'text-gray-700'}`}
-						>{place.area}</span
+				<li>
+					<button
+						type="button"
+						onclick={() => onSelect(place.id)}
+						aria-pressed={isSelected}
+						class={`w-full rounded border border-gray-300 p-3 text-left  ${isSelected ? 'bg-[#1f4e5f] text-white' : 'hover:bg-gray-100'}`}
 					>
-				</button>
-			</li>
-		{/each}
-	</ul>
+						<span class="block font-semibold">{place.name}</span>
+						<span class={`block text-sm ${isSelected ? 'text-white' : 'text-gray-700'}`}
+							>{place.area}</span
+						>
+					</button>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </section>
