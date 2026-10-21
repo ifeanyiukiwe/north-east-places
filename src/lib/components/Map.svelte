@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import 'maplibre-gl/dist/maplibre-gl.css';
 	import type { Place } from '#lib/places';
+	import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 
 	// Props passed in from the page (Svelte 5 "runes" syntax)
 	let {
@@ -29,6 +30,8 @@
 		(async () => {
 			// Load MapLibre only in the browser (it needs `window`)
 			const maplibregl = await import('maplibre-gl');
+
+			maplibregl.setWorkerUrl(workerUrl);
 
 			const newMap = new maplibregl.Map({
 				container,
